@@ -149,7 +149,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                                           wall.transform.columns.2.z)
             let nx = wallNormal.x
             let nz = wallNormal.z
-            let angleDeg = (atan2(nx, nz) * 180 / .pi + 360).truncatingRemainder(dividingBy: 360)
+            let angleDeg = (Double(atan2(nx, nz)) * 180 / Double.pi + 360).truncatingRemainder(dividingBy: 360)
             let direction = Self.eightDirection(angleDeg)
             directionLabel.text = "墙面朝向：\(direction)（法线方位 \(Int(angleDeg))°）"
         } else {
