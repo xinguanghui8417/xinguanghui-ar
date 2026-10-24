@@ -1,0 +1,15 @@
+name: CI Check
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  env-check:
+    runs-on: macos-latest
+    steps:
+      - name: 检查 Xcode 与系统环境
+        run: |
+          xcodebuild -version
+          sw_vers
+          echo "环境检查完成"
