@@ -1,0 +1,29 @@
+name: XinguanghuiAR
+options:
+  bundleIdPrefix: com.xinguanghui
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+targets:
+  XinguanghuiAR:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xinguanghui.ar
+        PRODUCT_NAME: XinguanghuiAR
+        INFOPLIST_FILE: Sources/Info.plist
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: NO
+
+schemes:
+  XinguanghuiAR:
+    build:
+      targets:
+        XinguanghuiAR: all
