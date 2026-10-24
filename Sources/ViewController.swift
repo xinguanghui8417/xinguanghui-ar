@@ -144,7 +144,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
         // 墙面朝向：由垂直平面法线计算方位角（8 向）
         if let wall = firstVertical {
-            let wallNormal = wall.geometry.normals.first ?? SIMD3<Float>(0, 0, -1)
+            let wallNormal = SIMD3<Float>(wall.transform.columns.2.x,
+                                          wall.transform.columns.2.y,
+                                          wall.transform.columns.2.z)
             let nx = wallNormal.x
             let nz = wallNormal.z
             let angleDeg = (atan2(nx, nz) * 180 / .pi + 360).truncatingRemainder(dividingBy: 360)
