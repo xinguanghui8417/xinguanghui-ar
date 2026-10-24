@@ -144,8 +144,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
         // 墙面朝向：由垂直平面法线计算方位角（8 向）
         if let wall = firstVertical {
-            let nx = wall.normal.x
-            let nz = wall.normal.z
+            let wallNormal = wall.geometry.normals.first ?? SIMD3<Float>(0, 0, -1)
+            let nx = wallNormal.x
+            let nz = wallNormal.z
             let angleDeg = (atan2(nx, nz) * 180 / .pi + 360).truncatingRemainder(dividingBy: 360)
             let direction = Self.eightDirection(angleDeg)
             directionLabel.text = "墙面朝向：\(direction)（法线方位 \(Int(angleDeg))°）"
