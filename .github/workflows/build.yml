@@ -23,5 +23,20 @@ jobs:
             -scheme XinguanghuiAR \
             -configuration Debug \
             -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             build
+
+      - name: 打包 .ipa（供 AltStore 侧载）
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Debug-iphoneos/XinguanghuiAR.app Payload/
+          zip -qr XinguanghuiAR.ipa Payload/
+          ls -lh XinguanghuiAR.ipa
+
+      - name: 上传 .ipa 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: XinguanghuiAR-ipa
+          path: XinguanghuiAR.ipa
+          if-no-files-found: error
